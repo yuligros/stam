@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+      Home
+{% endblock %}
+
+{% block body %}
+      {{ super() }}
+      {% set Page_name = 'Home Page' %}
+      {% if name %}
+            <h2 class="{% if color =='yuli'%}green{%else%}yellow{%endif%}">Hello {{ name }} </h2>
+      {% else  %}
+           <h2> You need to check in </h2>
+      {% endif %}
+      <a href= '/catalog'>Look on our new catalog </a>
+
+{% endblock %}
+
