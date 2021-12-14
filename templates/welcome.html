@@ -1,24 +1,6 @@
 {% extends 'base.html' %}
-
+{% set Page_name = "YULI'S WORLD" %}
 {% block title %}
-      Catalog
+      Welcome
 {% endblock %}
 
-{% block body %}
-    {{ super() }}
-    <h2>Catalog</h2>
-    <h3>Want to find:</h3>
-
-    <form action="/catalog" method="get">
-        Type: <input type="text" name="product_type"><br><br>
-        Size: <input type="text" name="size"><br><br>
-        <input type="submit">
-    </form>
-    {%  if p_type %}
-            <h2>Product from search:</h2>
-            Product: {{ p_type }}<br>
-            Size: {{ p_size }}
-    {% endif  %}
-
-
-{% endblock %}

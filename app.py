@@ -9,14 +9,14 @@ app = Flask(__name__)
 @app.route('/')
 def main_func():  # put application's code here
     # TODO
-    return redirect(url_for('home'))
+    return redirect(url_for('home_func'))
 
 @app.route('/Home')
 def home_func():
     return render_template('welcome.html')
 
 # About me page
-@app.route('/About me')
+@app.route('/About_me')
 def about_func():
     return render_template('cv.html')
 
@@ -25,9 +25,21 @@ def about_func():
 def pictures_func():
     return render_template('pictures.html')
 
+
+# Pictures page
+@app.route('/hobbies')
+def hobbies_func():
+    return render_template('assignment8.html',
+                           hobbies = ['Basketball','Snowboard','Running','Reformer pilates','hiking','cooking','Freediving'])
+
 # Contact page
 @app.route('/contact')
 def contact_func():
+    if 'y_name' in request.args:
+          name = request.args['y_name']
+          email = request.args['y_email']
+          password = request.args['y_password']
+          return render_template('contact.html', user_name = name,user_email = email,user_password = password)
     return render_template('contact.html')
 
 

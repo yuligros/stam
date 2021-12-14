@@ -1,53 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="cv.css">
-    <script src="cv.js"></script>
-    <script>
-        function myFunction(){
-            document.getElementById("p1").innerHTML = "Hello to my world";
-        }
-    </script>
-    <script type = "text/javascript">
-         function msgprint() {
-            alert("Did you liked my CV page?");
-         }
-    </script>
+{% extends 'base.html' %}
+{% set Page_name = 'My CV page' %}
+{% block title %}
+      CV
+{% endblock %}
 
-</head>
-<body>
+{% block body %}
+    {{ super() }}
+    <div class="col-12">
 
+        <div class="col-2">
+            <img src="/static/images/yuli.png" width="80%">
+            <h4><bold>Email</bold></h4>
+            <p>yuligros11@gmail.com</p>
+            <h4><bold>Phone</bold></h4>
+            <p>+972-525225280</p>
 
-    <div class="item1">
-        <h2>Yuli Grossman<br></h2>
-        <p>
+        </div>
+
+        <div class="col-8">
+            <h2>Yuli Grossman<br></h2>
+            <p>
             <h5>Second - year student for Management Information Systems | Ben Gurion University</h5>
             I am a hardworking and curious management information systems student with<br>
             experience in project management and coding. I have a great passion for technology and<br>
             for analyzing problems with user requirements in mind. </p>
-    </div>
-    <div class="item4"><img id = "rotate_yuli" src="images/yuli.png" style="width: 80%;"><br>
-    <button onclick="stopMotion()">More photos</button></div>
 
-    <div class="item2">
 
-        <a href = "cv1.html"> Contact me </a>
-        <h4><bold>Email</bold> </h4>
-        <p>yuligros11@gmail.com</p>
-        <h4><bold>Phone</bold> </h4>
-        <p>+972 525225280</p>
-        <form>
-         <input type = "button" onclick = "msgprint()" value = "Click here">
-        </form>
-<p>
-
-    </div>
-    <div class="item3">
-
-        <p>
-        <h2><srtong>EXPERIENCE</srtong></h2>
+            <h2>EXPERIENCE</h2>
+            <p>
             <h4>2021 –Present | Startup Investment Analyst Course, fresh.found VC </h4>
             Ben Gurion University Venture Capital fund – The analysts' course of the university's <br>
             venture capital found during a full semester for elite student of the university.
@@ -62,16 +42,10 @@
             <h4>Coaching | Individual and group coach</h4>
             > Pilates Mattress and Reformer Instructor<br>
             > Basketball coach for young and professional players
-        </p>
-
-
-    </div>
-    <div class="item5">
-        <p>
-       </p>
-    </div>
-
+            </p>
+        </div>
+        <div class="col-2"></div>
 
 </div>
-</body>
-</html>
+
+{% endblock %}

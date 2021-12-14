@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
+{% set Page_name = 'The contact page' %}
 {% block title %}
-      log in
+      Contact
 {% endblock %}
 {% block body %}
-{{ super() }}
-{% if session.username %}
-        <h2>Welcome back {{ session.username }}</h2>
-{% else %}
-       <h2>Log in:</h2>
-       <form action="/login" method="POST">
+   {{ super() }}
+    <div class="col-2"></div>
+    <div class="col-8">
+   <h2>Please enter your contact details:</h2>
+   <form action="/contact" method="get">
            Name:
            <input type="text" name="y_name"><br><br>
            Email:
@@ -16,6 +16,12 @@
            Password:
            <input type="password" name="y_password"><br><br>
            <input type="submit">
-       </form>
-{% endif %}
+   </form>
+   {% if user_name %}
+       <br>{{ user_name }} welcome to my world <br>
+       Your contact email: {{ user_email }} <br><br>
+       I hope you will enjoy getting to know a little bit about me :)
+   {% endif %}
+    </div>
+    <div class="col-2"></div>
 {% endblock %}

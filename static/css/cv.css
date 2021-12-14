@@ -1,12 +1,13 @@
 * {
     box-sizing: border-box;
     font-family: 'Martel', serif;
+    background-color: seashell;
 }
 
 [class*="col-"] {
   float: left;
   padding: 15px;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 
 .row::after {
@@ -68,8 +69,14 @@ display: table;
     text-align: center;
 }
 
-.col-2-bar {
-    width: 16.66%;
+.col-8-main {
+    width: 66.66%;
+    background-color: #E2DAD5;
+    text-align: center;
+}
+
+.col-3-bar {
+    width: 25%;
     background-color: #E2DAD5;
     text-align: center;
 }
