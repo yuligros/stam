@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+      log in
+{% endblock %}
+{% block body %}
+{{ super() }}
+{% if session.username %}
+        <h2>Welcome back {{ session.username }}</h2>
+{% else %}
+       <h2>Log in:</h2>
+       <form action="/login" method="POST">
+           Name:
+           <input type="text" name="y_name"><br><br>
+           Email:
+           <input type="email" name="y_email"><br><br>
+           Password:
+           <input type="password" name="y_password"><br><br>
+           <input type="submit">
+       </form>
+{% endif %}
+{% endblock %}

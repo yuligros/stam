@@ -1,35 +1,34 @@
 from flask import Flask, redirect, url_for,render_template
+from flask import request
+from flask import session
 
 app = Flask(__name__)
 
-
-
-#Thid decorator must to be the closest to the function
-@app.route('/home')
+# Home page
+@app.route('/yuli')
 @app.route('/')
-def hello_world():  # put application's code here
+def main_func():  # put application's code here
     # TODO
-    return redirect(url_for('about'))
+    return redirect(url_for('home'))
 
-@app.route('/home_page', methods = ['Get'])
-def home():  # put application's code here
-    found = True
+@app.route('/Home')
+def home_func():
+    return render_template('welcome.html')
 
-    if found:
-        name = 'yuli'
-        return render_template('index.html', name=name, color='green')
-    else:
-        return render_template('index.html')
+# About me page
+@app.route('/About me')
+def about_func():
+    return render_template('cv.html')
 
-@app.route('/catalog', methods = ['Get'])
-def catalog():  # put application's code here
-    return render_template('catalog.html')
+# Pictures page
+@app.route('/Pictures')
+def pictures_func():
+    return render_template('pictures.html')
 
-@app.route('/about', methods = ['Get'])
-def about():  # put application's code here
-    return render_template('about.html', uni='BGU',
-                           profiles={'names':'yuli','second':'grossman'},
-                           degrees=['BSc','Btchlor'])
+# Contact page
+@app.route('/contact')
+def contact_func():
+    return render_template('contact.html')
 
 
 if __name__ == '__main__':
