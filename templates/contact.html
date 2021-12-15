@@ -5,16 +5,17 @@
 {% endblock %}
 {% block body %}
    {{ super() }}
-    <div class="col-2"></div>
-    <div class="col-8">
-   <h2>Please enter your contact details:</h2>
+    <div class="col-12">
+    <div class="col-8-main">
+   <h2>Please enter your contact details</h2>
    <form action="/contact" method="get">
+
            Name:
-           <input type="text" name="y_name"><br><br>
+           <br><input type="text" name="y_name"><br><br>
            Email:
-           <input type="email" name="y_email"><br><br>
+            <br><input type="email" name="y_email"><br><br>
            Password:
-           <input type="password" name="y_password"><br><br>
+           <br><input type="password" name="y_password"><br><br>
            <input type="submit">
    </form>
    {% if user_name %}
@@ -23,5 +24,6 @@
        I hope you will enjoy getting to know a little bit about me :)
    {% endif %}
     </div>
-    <div class="col-2"></div>
+
+    </div>
 {% endblock %}

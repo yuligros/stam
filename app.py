@@ -20,17 +20,12 @@ def home_func():
 def about_func():
     return render_template('cv.html')
 
-# Pictures page
-@app.route('/Pictures')
-def pictures_func():
-    return render_template('pictures.html')
 
-
-# Pictures page
+# Hobbies page
 @app.route('/hobbies')
 def hobbies_func():
     return render_template('assignment8.html',
-                           hobbies = ['Basketball','Snowboard','Running','Reformer pilates','hiking','cooking','Freediving'])
+                           hobbies = ['Basketball','Snowboard','Running','Reformer pilates','hiking','cooking','Free - diving'])
 
 # Contact page
 @app.route('/contact')

@@ -3,13 +3,17 @@
 {% block title %}
       Hobbies
 {% endblock %}
+
 {% block body %}
+
    {{ super() }}
-    <h1>My hobbies:</h1>
+
+    <br><h2>My hobbies:</h2>
     <ul>
     {% for value in hobbies %}
-        <li>{{ value }}</li>
+        <li>{{ value | default('NO Hobbies',true) | upper }}</li><br>
     {% endfor %}
      </ul>
+
 
 {% endblock %}
