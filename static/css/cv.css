@@ -36,6 +36,13 @@ display: table;
 .col-12 {width: 100%;}
 /*---header-----*/
 
+.h2 {
+    text-align: center;
+}
+.images {
+    width: 100%;
+    text-align: center;
+}
 
 .home_form {
     border: none;
@@ -69,6 +76,11 @@ display: table;
     text-align: center;
 }
 
+.col-12-main {
+    width: 100%;
+    text-align: center;
+}
+
 .col-8-main {
     width: 66.66%;
     text-align: left;
@@ -96,6 +108,14 @@ display: table;
     font-size:40px;
     border-style: none;
     cursor: pointer;
+ }
+
+ .girls{
+     background-color: mistyrose;
+ }
+
+ .boys{
+     background-color: lightblue;
  }
 
 @media only screen and (max-width: 600px){

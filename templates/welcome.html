@@ -6,12 +6,19 @@
 
 {% block body%}
     {{ super() }}
-    <div class="col-3"></div>
+    <div class="col-12">
+    <div class="col-2"></div>
 
     <div class="col-8">
-        <img src="static/images/yuli2.jpg" width="80%">
+    {% if  session.logged_in  %}
+        <h2 class="h2">Hello {{ session['user_name'] }}! You have successfully logged in</h2>
+    {% else %}
+        <h2 class="h2">Hello, stranger :) <br> Please sign in or register</h2>
+    {% endif %}
+        <img class="images" src="static/images/yuli2.jpg" >
     </div>
 
-    <div class="col-3"></div>
+    <div class="col-2"></div>
+    </div>
 {% endblock %}
 

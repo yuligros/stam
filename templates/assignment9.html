@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% set Page_name = 'SEARCH' %}
+{% block title %}
+      Search
+{% endblock %}
+{% block body %}
+   {{ super() }}
+    <div class="col-12-main">
+
+    <div class="col-6">
+    <h2>Search:</h2>
+    <form action="/Search" method="GET">
+           User Name:
+           <br><input type="text" name="y_name"><br><br>
+           Email:
+            <br><input type="email" name="y_email"><br><br>
+           <input type="submit">
+    </form>
+    {% if is_exist %}
+         <span class="girls"><br> Your personal details: <br><br>User name: {{ user_name }}<br> Email: {{ email }} </span>
+    {% else %}
+{#   {% elseif is_exist ==  False %}#}
+{#        <h4 class="h2"> Sorry but we did not recognized tour personal details <br>#}
+{#        Below is the full users list: </h4>#}
+{#        {% for p_id, p_info in users.items() %}#}
+{#            <h5 class="h2">User Details: {{ p_id }}</h5>#}
+{#            {% for key in p_info %}#}
+{#                <h5 class="h2">{{ key }} : {{ p_info[key] }}</h5>#}
+{#            {% endfor %}#}
+{#        {% endfor %}#}
+   {% endif %}
+    </div>
+
+   <div class="col-6">
+    <h2>Registration:</h2>
+   <form action="/Search" method="POST">
+           User Name:
+           <br><input name="y_name"><br><br>
+           Email:
+            <br><input type="email" name="y_email"><br><br>
+           Password:
+           <br><input type="password" name="y_password"><br><br>
+           <input type="submit">
+   </form>
+   </div>
+
+
+
+
+
+
+
+
+
+    </div>
+{% endblock %}
