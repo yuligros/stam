@@ -16,21 +16,10 @@
             <br><input type="text" name="y_id"><br><br>
            <input type="submit">
     </form>
-{#    {% help = False %}#}
-{#    {% if 'y_id' in request.args %}#}
-{#          {% for user in users%}#}
-{#               {% if user.id  == id %}#}
-{#                    {% help = True %}#}
-{#              {% endif %}#}
-{#          {% endfor %}#}
-{#    {% endif %}#}
-{#    {% if help == True %}#}
-{#          {% for user in users%}#}
-{#                <li>#}
-{#                {{ user.id }}: <b>{{ user.user_name }}</b> ({{ user.email }})#}
-{#                </li>#}
-{#          {% endfor %}#}
-{#    {% endif %}#}
+    {% if user_name %}
+            <h4>Hi {{ user_name }}, you sign in with the below details: <br> User name: {{ user_name }} <br> ID: {{ id }}</h4>
+            <a CLASS="girls" href="/logout">LOG OUT</a>
+    {% endif %}
 
 
     </div>
