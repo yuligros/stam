@@ -24,3 +24,12 @@ e. Demonstrate at list one usage of a block
 
 f. Demonstrate one usage of a super() function
 
+## Assignment 9
+
+* There is a new template - assignment 9.
+* Assignment 9 template displays two forms - one for searching your user by ID and one for signing up.
+* Instead of creating a list of users, I built a MySQL table to save the user details.
+[Note: I am aware that it was not requested but I was able to get into it. :)]
+* Users have the option of logging out, as well as seeing their user name on each web page. 
+
+
