@@ -12,23 +12,27 @@
     <form action="/Search" method="GET">
            User Name:
            <br><input type="text" name="y_name"><br><br>
-           Email:
-            <br><input type="email" name="y_email"><br><br>
+           ID:
+            <br><input type="text" name="y_id"><br><br>
            <input type="submit">
     </form>
-    {% if is_exist %}
-         <span class="girls"><br> Your personal details: <br><br>User name: {{ user_name }}<br> Email: {{ email }} </span>
-    {% else %}
-{#   {% elseif is_exist ==  False %}#}
-{#        <h4 class="h2"> Sorry but we did not recognized tour personal details <br>#}
-{#        Below is the full users list: </h4>#}
-{#        {% for p_id, p_info in users.items() %}#}
-{#            <h5 class="h2">User Details: {{ p_id }}</h5>#}
-{#            {% for key in p_info %}#}
-{#                <h5 class="h2">{{ key }} : {{ p_info[key] }}</h5>#}
-{#            {% endfor %}#}
-{#        {% endfor %}#}
-   {% endif %}
+{#    {% help = False %}#}
+{#    {% if 'y_id' in request.args %}#}
+{#          {% for user in users%}#}
+{#               {% if user.id  == id %}#}
+{#                    {% help = True %}#}
+{#              {% endif %}#}
+{#          {% endfor %}#}
+{#    {% endif %}#}
+{#    {% if help == True %}#}
+{#          {% for user in users%}#}
+{#                <li>#}
+{#                {{ user.id }}: <b>{{ user.user_name }}</b> ({{ user.email }})#}
+{#                </li>#}
+{#          {% endfor %}#}
+{#    {% endif %}#}
+
+
     </div>
 
    <div class="col-6">
@@ -38,18 +42,13 @@
            <br><input name="y_name"><br><br>
            Email:
             <br><input type="email" name="y_email"><br><br>
+           ID:
+           <br><input name="y_id"><br><br>
            Password:
            <br><input type="password" name="y_password"><br><br>
            <input type="submit">
    </form>
    </div>
-
-
-
-
-
-
-
 
 
     </div>

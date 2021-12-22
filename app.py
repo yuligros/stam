@@ -1,26 +1,51 @@
 from flask import Flask, redirect, url_for,render_template
 from flask import request, session
 import mysql.connector
-
+from datetime import date
 
 app = Flask(__name__)
 app.secret_key = '123'
-app.permanent_session_lifetime = 15
+app.permanent_session_lifetime = 30
 
+# ------------- DATABASE CONNECTION --------------- #
+# ------------------------------------------------- #
+def interact_db(query, query_type: str):
+    return_value = False
+    connection = mysql.connector.connect(
+                         host="localhost",
+                         user="root",
+                         password="Y$11Gros"
+    )
+    cursor = connection.cursor(named_tuple=True)
+    cursor.execute(query)
 
-# Connect to mysql
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="Y$11Gros"
-)
+    if query_type == 'commit':
+        # Use for INSERT, UPDATE, DELETE statements.
+        # Returns: The number of rows affected by the query (a non-negative int).
+        connection.commit()
+        return_value = True
 
-# Print success connection
-print(mydb)
+    if query_type == 'fetch':
+        # Use for SELECT statement.
+        # Returns: False if the query failed, or the result of the query if it succeeded.
+        query_result = cursor.fetchall()
+        return_value = query_result
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    connection.close()
+    cursor.close()
+    return return_value
+# ------------------------------------------------- #
+# ------------------------------------------------- #
 
+@app.route('/users')
+def func_users():
+    query = "select * from users.user"
+    query_reasult = interact_db(query, 'fetch')
+    return render_template('users.html', users = query_reasult)
+
+# @app.route('/delete_user')
+# def func_delete_user():
+#     return render_template('users.html')
 
 # Home page
 @app.route('/yuli')
@@ -67,29 +92,37 @@ def search_func():
           user_name = request.form['y_name']
           user_email= request.form['y_email']
           user_password = request.form['y_password']
+          id = request.form['y_id']
+          date_time = date.today()
           session['user_name'] = user_name
           session['logged_in'] = True
-          return render_template('welcome.html',
-                                 user_name=user_name)
+          query = '''INSERT INTO `users`.`user` (`id`, `user_name`, `email`, `password`, `date`) VALUES('%s','%s', '%s','%s','%s');'''%(id,user_name, user_email,user_password,date_time)
+          interact_db(query,'commit')
+          return render_template('welcome.html')
 
     if request.method == 'GET':
-      if 'y_name' in request.args:
+        query = "select * from users.user"
+        query_reasult = interact_db(query, 'fetch')
+        if 'y_id' in request.args:
+           id = request.args['y_id']
            user_name = request.args['y_name']
-           email = request.args['y_email']
-           session['user_name'] = user_name
-           session['logged_in'] = True
-           if_exist = check_if_user_exist(user_name,users)
-           return render_template('assignment9.html',
-                                  user_name=user_name,
-                                  email = email,
-                                  is_exist = if_exist)
-
-      else:
-          return render_template('assignment9.html',
-                                 users=users,is_exist = if_exist)
+           query_2 = "select COUNT(*) as exist from users.user WHERE users.user.id = ('%s');"%id
+           query_reasult_2 = interact_db(query_2, 'fetch')
+           for q in query_reasult_2:
+              if q.exist == 1:
+                session['user_name'] = user_name
+                session['logged_in'] = True
+                return render_template('welcome.html')
+           return render_template('users.html', users=query_reasult)
 
     return render_template('assignment9.html')
 
+
+@app.route('/logout')
+def logout():
+    session.pop('username',None)
+    session['logged_in'] = False
+    return redirect(url_for('home_func'))
 
 
 def get_users():
@@ -104,15 +137,15 @@ def get_users():
     return users
 
 
-def check_if_user_exist(user,users):
-    for id, values in users.items():
-        for key in values:
-            if values[key] == user:
-                return True;
-    return False
+# def check_if_user_exist(id,users):
+#     for for user in users:
+#             if user.id == id:
+#                 return True;
+#     return False
 
 
-
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 
