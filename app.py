@@ -8,6 +8,11 @@ app.secret_key = '123'
 app.permanent_session_lifetime = 30
 
 
+# import assignment 10
+from pages.assignment10.assignment10 import assignment10
+app.register_blueprint(assignment10)
+
+
 # ------------- DATABASE CONNECTION --------------- #
 def interact_db(query, query_type: str):
     return_value = False

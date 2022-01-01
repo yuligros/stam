@@ -32,4 +32,12 @@ f. Demonstrate one usage of a super() function
 [Note: I am aware that it was not requested but I was able to get into it. :)]
 * Users have the option of logging out, as well as seeing their user name on each web page. 
 
+## Assignment 10
 
+* I created a new blueprint t called: ‘assignment10’.
+* The blueprint template contains:
+a. Insertion form - a form that helps to insert a new user to the table ‘users’.
+b. Update form -  a form that helps to update specific user in the the table ‘users’ 
+c. Deletion form - a form that helps to delete any user according to its id or any
+other unique identifier from the table ‘users’.
+d. List of users - displays the list of users.

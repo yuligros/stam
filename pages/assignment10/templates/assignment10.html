@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% set Page_name = "USERS" %}
+{% block title %}
+      Users
+{% endblock %}
+
+{% block body %}
+
+   {{ super() }}
+    <div class="col-12-main">
+
+    <div class="col-4">
+    <h2>Insert new user:</h2>
+   <form action="/Search" method="POST">
+           User Name:
+           <br><input name="y_name"><br><br>
+           Email:
+            <br><input type="email" name="y_email"><br><br>
+           ID:
+           <br><input name="y_id"><br><br>
+           Password:
+           <br><input type="password" name="y_password"><br><br>
+           <input type="submit">
+   </form>
+   </div>
+
+
+   <div class="col-4">
+   <h2>Update users details:</h2>
+   <form action="/assignment10" method="GET">
+           Insert the user ID:
+           <br><input name="y_id_update"><br><br>
+           Update User Name:
+           <br><input name="y_name_update"><br><br>
+           Update Email:
+            <br><input type="email" name="y_email_update"><br><br>
+           Update Password:
+           <br><input type="password" name="y_password_update"><br><br>
+           <input type="submit">
+   </form>
+   {% if user %}
+            <h4>The user details was successfully updated: <br> ID: {{ id }} <br> User name: {{ user }}  <br> User email: {{ email }} </h4>
+    {% endif %}
+   </div>
+
+
+    <div class="col-4">
+    <h2>Delete user: </h2>
+    <form action="/assignment10" method="GET">
+           User Name:
+           <br><input type="text" name="y_name"><br><br>
+           ID:
+            <br><input type="text" name="y_id"><br><br>
+           <input type="submit">
+    </form>
+    {% if user_name %}
+            <h4>The user was successfully deleted: <br> User name: {{ user_name }} <br> ID: {{ id }}</h4>
+    {% endif %}
+    </div>
+
+
+    <div class="col-12">
+    <div class="col-4"></div>
+    <div class="col-4-users">
+        <h4>Users list:</h4>
+        <ul>
+            {% for user in users%}
+                <li>
+                    {{ user.id }}: <b>{{ user.user_name }}</b> ({{ user.email }})
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-4"></div>
+    </div>
+
+
+    </div>
+{% endblock %}
