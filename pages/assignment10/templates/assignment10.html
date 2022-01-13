@@ -60,7 +60,6 @@
 
 
     <div class="col-12">
-    <div class="col-4"></div>
     <div class="col-4-users">
         <h4>Users list:</h4>
         <ul>
@@ -71,9 +70,33 @@
             {% endfor %}
         </ul>
     </div>
-    <div class="col-4"></div>
-    </div>
+    <div class="col-4">
+        <script src="../static/js/js_code.js"></script>
+        <h2>Users list <button onclick="getUsers()">Get users</button></h2>
+        <main>
 
+        </main>
+    </div>
+    </div>
+    <div class="col-4">
+{#        <h2>Pockemons</h2>#}
+{#        <form action="/assignment10">#}
+{#            <input type="number" name = "number">#}
+{#            <input type="submit" value = "Get pockemons">#}
+{#        </form>#}
+{##}
+{#        {% if pockemons %}#}
+{#            {% for pockemon in pockemons %}#}
+{#                <h3> pockemon: {{ pockemon.id }}</h3>#}
+{#                <img src="{{ pockemon.sprites.front_default }}" alt="pic">#}
+{#                <h4>Name: {{ pockemon.name }}</h4>#}
+{#                <h4> Height: {{ pockemon.height }}></h4>#}
+{#                <h4>Weight: {{ pockemon.weight }}</h4>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+
+
+    </div>
 
     </div>
 {% endblock %}

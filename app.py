@@ -1,7 +1,10 @@
 from flask import Flask, redirect, url_for,render_template
 from flask import request, session
 import mysql.connector
+import mysql.connector
 from datetime import date
+import requests
+import random
 
 app = Flask(__name__)
 app.secret_key = '123'
@@ -19,8 +22,11 @@ def interact_db(query, query_type: str):
     connection = mysql.connector.connect(
                          host="localhost",
                          user="root",
-                         password="Y$11Gros"
+                         password="root",
+                         database='users'
     )
+
+
     cursor = connection.cursor(named_tuple=True)
     cursor.execute(query)
 
@@ -116,6 +122,36 @@ def logout():
     session.pop('username',None)
     session['logged_in'] = False
     return redirect(url_for('home_func'))
+
+
+
+#users to a json file
+@app.route('/assignment11/users’')
+def func_json():
+    query = "select * from users.user"
+    query_reasult = interact_db(query, 'fetch')
+    return render_template('assignment11.html', users = query_reasult)
+
+
+#Back-end
+def get_user(num):
+    users = []
+    for i in range(num):
+        x = random.randint(1,100)
+        res = request.get(f':https://reqres.in/api/users/{x}')
+        res = res.json()
+        users.append(res)
+    return users
+
+
+@app.route('/assignment11/outer_source')
+def req_backend_func():
+    num = 1
+    if "id" in request.args:
+        id= int(request.args['id'])
+        user = get_user(id)
+        return  render_template('assignment11.html',user = user)
+    return render_template('assignment11.html')
 
 
 

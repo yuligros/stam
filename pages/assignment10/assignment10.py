@@ -1,7 +1,10 @@
 from flask import Blueprint, redirect, url_for,render_template
-from flask import request, session
+from flask import request, session, jsonify
 import mysql.connector
 from datetime import date
+import requests
+import random
+
 
 assignment10 = Blueprint(
     'assignment10',
@@ -17,7 +20,8 @@ def interact_db(query, query_type: str):
     connection = mysql.connector.connect(
                          host="localhost",
                          user="root",
-                         password="Y$11Gros"
+                         password="root",
+                         database= "users"
     )
     cursor = connection.cursor(named_tuple=True)
     cursor.execute(query)
@@ -95,8 +99,86 @@ def search_func():
     return render_template('assignment10.html',users = query_reasult)
 
 
-@assignment10.route('/logout')
-def logout():
-    session.pop('username',None)
-    session['logged_in'] = False
-    return redirect(url_for('home_func'))
+# # Assignmen11
+# @assignment10.route('/assignment11/users')
+# def users_to_json():
+#     query = "select * from users.user"
+#     query_reasult = interact_db(query, 'fetch')
+#     return  render_template('json_users.html',users = query_reasult)
+
+
+
+# def get_user(num):
+#     users = []
+#     for i in range(num):
+#         x = random.randint(1,100)
+#         res = request.get(f':https://reqres.in/api/users/{x}')
+#         res = res.json()
+#         users.append(res)
+#     return users
+#
+#
+#
+# @assignment10.route('assignment11/outer_source')
+# def req_backend_func():
+#     num = 1
+#     if "number" in request.args:
+#         num = int(request.args['number'])
+#         user = get_user(num)
+#         return  render_template('req_front_end.html',user = user)
+#     return render_template('req_front_end.html')
+
+
+
+#Lesson 12 - Rest api + Json
+# @assignment10.route('/user', defaults = {'id': None })
+# @assignment10.route('/user/<int:id>/<component>')
+# def get_id(id = None, component = None):
+#     if id:
+#         print(type(id))
+#         return jsonify(
+#             {
+#                 'success': True,
+#                 'user id': id,
+#                 'is_handeled': component
+#             }
+#         )
+#     return jsonify(
+#         {
+#             'success': False
+#         }
+#     )
+    # return f'user is id: {id} and the component is {component}'
+
+
+# @assignment10.route('/get_users/<int:id>')
+# def prepare_to_get_users(id):
+#     #Some checks
+#     return redirect(url_for('get_id', id = id, component = 'handled'))
+
+#Lesson 12 - Rest api + Json
+@assignment10.route('/user', defaults = {'id': None })
+@assignment10.route('/user/<int:id>/<component>')
+def get_id():
+    query = "select * from users.user"
+    query_reasult = interact_db(query, 'fetch')
+    if id:
+        print(type(id))
+        return jsonify(
+            {
+
+            }
+        )
+    return jsonify(
+        {
+            'success': False
+        }
+    )
+    # return f'user is id: {id} and the component is {component}'
+
+
+# @assignment10.route('/logout')
+# def logout():
+#     session.pop('username',None)
+#     session['logged_in'] = False
+#     return redirect(url_for('home_func'))
