@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for,render_template
+from flask import Flask, redirect, url_for, render_template, jsonify
 from flask import request, session
 import mysql.connector
 import mysql.connector
@@ -126,31 +126,41 @@ def logout():
 
 
 #users to a json file
-@app.route('/assignment11/users’')
+@app.route('/assignment11/users')
 def func_json():
     query = "select * from users.user"
     query_reasult = interact_db(query, 'fetch')
-    return render_template('assignment11.html', users = query_reasult)
+    return jsonify(query_reasult)
 
 
-#Back-end
-def get_user(num):
+# #Back-end
+# def get_user(num):
+#     users = []
+#     for i in range(num):
+#         x = random.randint(1,100)
+#         res = request.get(f'https://reqres.in/api/users/{x}')
+#         res = res.json()
+#         users.append(res)
+#     return users
+
+
+@app.route('/assignment11/outer_source',methods = ['GET'])
+def req_backend_func():
     users = []
-    for i in range(num):
-        x = random.randint(1,100)
-        res = request.get(f':https://reqres.in/api/users/{x}')
+    if 'user_id' in request.args:
+        user_id = int(request.args['user_id'])
+        res = requests.get(f'https://reqres.in/api/users/{user_id}')
         res = res.json()
         users.append(res)
-    return users
+        return  render_template('assignment11.html',users = users)
 
+    if 'user_id_front' in request.args:
+        user_id_front = int(request.args['user_id_front'])
+        # res = requests.get(f'https://reqres.in/api/users/{user_id}')
+        # res = res.json()
+        # users.append(res)
+        return  render_template('assignment11.html',user_id_front = user_id_front)
 
-@app.route('/assignment11/outer_source')
-def req_backend_func():
-    num = 1
-    if "id" in request.args:
-        id= int(request.args['id'])
-        user = get_user(id)
-        return  render_template('assignment11.html',user = user)
     return render_template('assignment11.html')
 
 

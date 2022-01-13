@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% set Page_name = "USERS" %}
+{% set Page_name = "USERS_f&b" %}
 {% block title %}
       Req front- end
 {% endblock %}
@@ -8,45 +8,37 @@
     {{ super() }}
     <div class="col-12">
 
-    <div class="col-4">
-
-        <script src="../static/js/js_code.js"></script>
-        <h2>Users list <button onclick="getUsers()">Get users</button></h2>
-        <main>
-
-        </main>
-    </div>
-
-
-    <div class="col-4">
-        <h2>Users - Frontend</h2>
-        <form action="assignment11/outer_source">
-            <input name = "id">
-            <input type="submit" name = "Get_id">
-        </form>
-{##}
-{#        <script src="../static/js/js_code.js"></script>#}
-{#        <h2>Users list <button onclick="getUsers()">Get users</button></h2>#}
-{#        <main>#}
-{##}
-{#        </main>#}
-    </div>
-
-    <div class="col-4">
-        <h2>Users - Backend</h2>
-        <form action="assignment11/outer_source">
-            <input type="number" name = "number">
+    {#Front-end side#}
+    <div class="col-6">
+    <h2>look for a User by ID - front-end Side</h2>
+        <form action="/assignment11/outer_source" method="GET">
+            <input name = "user_id_front">
             <input type="submit" value = "Get id">
         </form>
+        {% if user_id_front %}
+           <script src="../static/js/js_code.js"></script>
+           <h4>The user details <button onclick="getUsers({{user_id_front}})">Show</button></h4>
+           <main>
 
-        {% if user %}
+           </main>
+        {% endif %}
+    </div>
+
+
+   {#Back-end side#}
+    <div class="col-6">
+        <h2>look for a User by ID - Backend Side</h2>
+        <form action="/assignment11/outer_source" method="GET">
+            <input name = "user_id">
+            <input type="submit" value = "Get id">
+        </form>
+        {% if users %}
             {% for user in users %}
-                <h3> user-id: {{ user.id }}</h3>
-                <h4>Name: {{ user.email }}</h4>
-                <h4> first_name: {{ user.first_name }}></h4>
-                <h4>last_name: {{ user.last_name }}</h4>
-                <h4>last_name: {{ user.last_name }}</h4>
-                <img src="{{ user.avatar }}" alt="pic">
+                <h4> user-id: {{ user.data.id }}</h4>
+                <h4>Name: {{ user.data.email }}</h4>
+                <h4> first_name: {{ user.data.first_name }}</h4>
+                <h4>last_name: {{ user.data.last_name }}</h4>
+                <img src="{{ user.data.avatar }}" alt="pic">
             {% endfor %}
         {% endif %}
     </div>
