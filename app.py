@@ -133,16 +133,6 @@ def func_json():
     return jsonify(query_reasult)
 
 
-# #Back-end
-# def get_user(num):
-#     users = []
-#     for i in range(num):
-#         x = random.randint(1,100)
-#         res = request.get(f'https://reqres.in/api/users/{x}')
-#         res = res.json()
-#         users.append(res)
-#     return users
-
 
 @app.route('/assignment11/outer_source',methods = ['GET'])
 def req_backend_func():
@@ -156,12 +146,32 @@ def req_backend_func():
 
     if 'user_id_front' in request.args:
         user_id_front = int(request.args['user_id_front'])
-        # res = requests.get(f'https://reqres.in/api/users/{user_id}')
-        # res = res.json()
-        # users.append(res)
         return  render_template('assignment11.html',user_id_front = user_id_front)
 
     return render_template('assignment11.html')
+
+
+#Assignment_12
+@app.route('/assignment12/restapi_users/',defaults = {'USER_ID': None})
+@app.route('/assignment12/restapi_users/<int:USER_ID>')
+def get_id(USER_ID = None):
+    if USER_ID:
+        print(type(USER_ID))
+        query = "select * from users.user WHERE users.user.id = ('%s');"%USER_ID
+        query_reasult = interact_db(query, 'fetch')
+        if(query_reasult):
+             return jsonify(query_reasult)
+        else:
+            return jsonify(
+        {
+            'Error': 'We are sorry, but the user does not exist'
+        })
+
+    return jsonify(
+        {
+            'Error': 'We are sorry, but you did not insert the user ID '
+        }
+    )
 
 
 

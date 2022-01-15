@@ -30,22 +30,3 @@ function put_users_inside_html(response_obj_data,user_id_front){
     }
 }
 
-
-// function getUsers_to_json(users) {
-//     const users_json = JSON.stringify(users);
-//     const curr_main = document.querySelector("main")
-//     for (let user of users_json) {
-//         const section = document.createElement('section');
-//         section.innerHTML = `
-//         <div>
-//            <span>${user.id}</span>
-//            <br>
-//             <span>${user.user_name}</span>
-//             <br>
-//             <a href="mail_to:${user.email}">send email</a>
-//         </div>
-//         `;
-//         curr_main.append(section); //Must to do in order to present the html tag
-//         return users_json;
-//     }
-// }
